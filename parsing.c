@@ -6,32 +6,31 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:10:01 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/02/16 19:59:54 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/02/17 20:06:16 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_empty(char **av)
+void	check_empty(char *av)
 {
 	int	i;
 	int	j;
 	
 	i = 0;
 	j = 0;
-	while (av[i])
-	{
-		if (!av[i][0])//empty string ""
+	
+		// puts("ok in check empty");
+		// printf("letter is --> %c\n", av[i]);
+		if (!av[0])//empty string ""
 		{
 			print_msg();
-			//printf("%c", av[i][j]);
 		}
-		while ((av[i][j] >= 9 && av[i][j] <= 13) || av[i][j] == ' ')
-			j++;
-			if (!av[i][j])
+		while ((av[i] >= 9 && av[i] <= 13) || av[i] == ' ')
+			i++;
+			if (!av[i])
 				print_msg();
-		i++;
-	}
+
 }
 
 void	check_valid(char *av)
@@ -41,7 +40,6 @@ void	check_valid(char *av)
 	i = 0;
 	while (av[i])
 	{
-		printf("%c", av[i]);
 		if ((av[i] >= '0' && av[i] <= '9') || av[i] == '+'
 			|| av[i] == '-' || av[i] == ' ')
 				i++;

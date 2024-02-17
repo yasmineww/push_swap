@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:05:18 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/02/16 20:01:34 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/02/17 20:06:27 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ int	main (int ac, char **av)
 		return (0);
 	else if (ac >= 2)
 	{
-		check_empty(av);
+		// puts("ok");
 		while(av[i])
 		{
+			check_empty(av[i]);
 			check_valid(av[i]);
 			i++;
 		}

@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:42:18 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/02/16 19:29:20 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/02/17 20:05:41 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-void	check_empty(char **av);
+void	check_empty(char *av);
 void	print_msg();
 char	*join_all(char **av);
 int		ft_strlen(char	*av);
