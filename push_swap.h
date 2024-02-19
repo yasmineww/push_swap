@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:42:18 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/02/17 20:05:41 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/02/19 11:07:40 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void	print_msg();
 char	*join_all(char **av);
 int		ft_strlen(char	*av);
 void	check_valid(char *av);
-int		ft_atoi(const char *str);
+int		my_atoi(char	*str);
 
 #endif
