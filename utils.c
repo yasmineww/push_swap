@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:18:55 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/02/22 12:03:37 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:40:36 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,46 @@ int	my_atoi(char *str)
 		str++;
 	}
 	res *= sign;
-	if (res > 2147483647 || res < -2147483648 || (size_t)res <= 18446744073709551615ULL || *str == '-' || *str == '+')
+	if (res > 2147483647 || res < -2147483648 || *str == '-' || *str == '+'
+		|| (ft_intlen(res) > 10 && res > 0) || (ft_intlen(res) > 11 && res < 0))
 		print_msg();
 	return (res);
 }
 
-void	add_front(t_list **lst, int content)
+void	add_back(t_list **stack_a, int content)
 {
 	t_list	*node;
+	t_list	*temp;
 
 	node = malloc (sizeof(t_list));
 	if (!node)
 		return ;
 	node->content = content;
-	node->next = *lst;//node points to head
-	*lst = node;//set the new head to be this node
+	node->next = NULL;
+	if ((*stack_a) == NULL)
+	{
+		*stack_a = node;
+		return;
+	}
+	temp = *stack_a;
+	while (temp->next != NULL)
+	{
+		temp = temp->next;
+	}
+	temp->next = node;
+}
+
+int	ft_intlen(int n)
+{
+	int	size;
+
+	size = 0;
+	if (n <= 0)
+		size++;
+	while (n != 0)
+	{
+		n = n / 10;
+		size++;
+	}
+	return (size);
 }

@@ -6,25 +6,17 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 12:17:26 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/02/22 21:53:24 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:24:41 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
+#include "push_swap.h"
 
 void	swap(t_list **stack)
 {
 	t_list	*node1;
 	t_list	*node2;
-	t_list	*temp;
+	int		temp;
 
 	node1 = *stack;
 	node2 = node1->next;
@@ -36,84 +28,68 @@ void	swap(t_list **stack)
 	}
 }
 
-t_list	*ft_lstnew(void *content)
-{
-	t_list	*node;
-
-	node = malloc (sizeof(t_list));
-	if (!node)
-		return (NULL);
-	node->content = content;
-	node->next = NULL;
-	return (node);
-}
-
 void	rotate(t_list **stack)
 {
 	t_list	*old_head;
 	t_list	*new_head;
-	t_list	*iter;
 
 	old_head = *stack;
 	new_head = (*stack)->next;
 	old_head->next = NULL;
-	iter = new_head;
- 	while (iter->next != NULL)
-        iter = iter->next;
-    iter->next = old_head;
 	*stack = new_head;
+ 	while (new_head->next != NULL)
+        new_head = new_head->next;
+    new_head->next = old_head;
 }
 
 void	reverse_rotate(t_list **stack)
 {
-	t_list	*old_head;
 	t_list	*new_head;
-	t_list	*tmp;
+	t_list	*last_node;
 
-	old_head = *stack;
 	new_head = *stack;
-	tmp = old_head;
  	while (new_head->next != NULL)
-        new_head = new_head->next;
-	new_head->next = old_head;
-	while (tmp != new_head)
-		tmp = tmp->next;
-	tmp->next = NULL;
-	*stack = new_head;
-	while (stack != NULL) 
 	{
-       	printf("|%s|\n", ((*stack)->content));
-        stack = &(*stack)->next;
-    }
+		last_node = new_head;
+        new_head = new_head->next;
+	}
+	last_node->next = NULL;
+	new_head->next = *stack;
+	*stack = new_head;
 }
 
-int	main (void)
+void	push(t_list **stack_a, t_list **stack_b)
 {
-	t_list	*head = ft_lstnew("salma");
-	t_list	*node1 = ft_lstnew("makh");
-	t_list	*node2 = ft_lstnew("yasmine");
-	t_list	*node3 = ft_lstnew("makhlouf");
-	t_list	*node4 = ft_lstnew("younes");
-	t_list	*node5 = ft_lstnew("chaouni");
-	t_list	*iter;
+	t_list	*top_stack;
 
-	head->next = node1;
-	node1->next = node2;
-	node2->next = node3;
-	node3->next = node4;
-	node4->next = node5;
-	iter = head;
-	reverse_rotate(&head);
-	// while (head != NULL) 
-	// {
-    //    	printf("|%s|\n", (head->content));
-    //     head = head->next;
-    // }
-	// printf("%s\n", head->content);
-	// printf("%s\n", node1->content);
-	// printf("%s\n", node2->content);
-	// printf("%s\n", node3->content);
-	// printf("%s\n", node4->content);
-	// printf("%s\n", node5->content);
-	return (0);
+	top_stack = *stack_b;
+	*stack_b = (*stack_b)->next;
+	top_stack->next = *stack_a;
+	*stack_a = top_stack;
+}
+
+void	sort(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*ptr;
+	int		size;
+
+	size = 0;
+	ptr = *stack_a;
+	*stack_b = NULL;
+	while (ptr->next != NULL)
+	{
+		size++;
+		ptr = ptr->next;
+	}
+	if ((size = 2) && check_sort(stack_a))
+	{
+		swap(stack_a);
+		write(1, "sa\n", 3);
+	}
+	// else if ((size = 3) && check_sort(stack_a))
+	// 	sort_3(stack_a);
+	// else if ((size == 5 || size == 4) && check_sort(stack_a))
+	// 	sort_5(stack_a, stack_b);
+	// else
+	// 	sort_algo(&stack_a, stack_b);
 }
