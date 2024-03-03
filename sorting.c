@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:04:38 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/02 16:05:22 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/03 01:14:11 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,79 @@ void	algo(t_list **stack_a, t_list **stack_b)
 			write(1, "pb\n", 3);
 		}
 	}
-	if((stack_size(stack_a) == 3) && check_sort(stack_a))
+	if ((stack_size(stack_a) == 3) && check_sort(stack_a))
 		sort_3(stack_a);
+	calc_position(stack_b);
+	calc_cost(stack_b);
+	calc_target(stack_a, stack_b);
+	// while(*stack_b)
+	// {
+	// 	printf("content ---> %d //// target ---> %d /// index ---> %d\n", (*stack_b)->content, (*stack_b)->target, (*stack_b)->index);
+	// 	(*stack_b) = (*stack_b)->next;
+	// }
+}
+
+void	calc_position(t_list **stack)
+{
+	t_list	*temp;
+	int i;
+
+	i = 0;
+	temp = *stack;
+	while(temp)
+	{
+		temp->position = i;
+		i++;
+		temp = temp->next;
+	}
+}
+
+void	calc_cost(t_list **stack)
+{
+	t_list	*temp;
+	int		size;
+	int		i;
+
+	calc_position(stack);
+	size = stack_size(stack);
+	temp = *stack;
+	i = (size / 2);
+	if (size % 2 == 1)
+		size = size + 1;
+	while (temp)
+	{
+		if (temp->position < (size / 2))
+			temp->cost_b = temp->position;
+		else
+		{
+			temp->cost_b = i;
+			temp->cost_b *= -1; 
+			i--;
+		}
+		temp = temp->next;
+	}
+}
+
+void	calc_target(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*temp1;
+	t_list	*temp2;
+
+	temp2 = *stack_b;
+	while (temp2)
+	{
+		temp1 = *stack_a;
+		while (temp1)
+		{
+			temp2->target = temp1->index;
+			if (temp1->index > temp2->index)
+			{
+				temp2->target = temp1->index;
+				break ;
+			}
+			else
+				temp1 = temp1->next;	
+		}
+		temp2 = temp2->next;
+	}
 }
