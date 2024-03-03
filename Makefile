@@ -1,6 +1,6 @@
 NAME = push_swap
 
-SRC = main.c parsing.c utils.c ft_split.c
+SRC = main.c parsing.c utils.c ft_split.c actions.c sorting.c algo.c
 
 BONUS =
 
@@ -8,7 +8,7 @@ OBJ = $(SRC:.c=.o)
 
 BONUS_OBJ = 
 
-FLAG = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror -g
 
 HEADER = push_swap.h
 
