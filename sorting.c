@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:04:38 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/03 22:03:13 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:36:14 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,34 +95,18 @@ void	sort_3(t_list **stack_a)
 	}
 }
 
-void	algo(t_list **stack_a, t_list **stack_b)
+void	sort(t_list **stack_a, t_list **stack_b)
 {
 	int	size;
 
-	index_stack(stack_a);
 	size = stack_size(stack_a);
-	
-	while (stack_size(stack_a) > 3)
+	if (size == 2)
 	{
-		if ((*stack_a)->index <= (size / 2))
-		{
-			push(stack_b, stack_a);
-			write(1, "pb\n", 3);
-		}
-		else
-		{
-			rotate(stack_a);
-			write(1, "ra\n", 3);
-		}
-		if ((*stack_a)->index < size - 2)
-		{
-			push(stack_b, stack_a);
-			write(1, "pb\n", 3);
-		}
+		swap(stack_a);
+		write(1, "sa\n", 3);
 	}
-	if ((stack_size(stack_a) == 3) && check_sort(stack_a))
+	else if ((size == 3) && check_sort(stack_a))
 		sort_3(stack_a);
-	calc_position(stack_b);
-	calc_cost(stack_b);
-	calc_target(stack_a, stack_b);
+	else if ((size > 3) && check_sort(stack_a))
+		algo(stack_a, stack_b);
 }

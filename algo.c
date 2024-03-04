@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 21:58:55 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/03 21:59:25 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:26:39 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ void	calc_cost(t_list **stack)
 	while (temp)
 	{
 		if (temp->position < (size / 2))
-			temp->cost_b = temp->position;
+			temp->cost = temp->position;
 		else
 		{
-			temp->cost_b = i;
-			temp->cost_b *= -1; 
+			temp->cost = i;
+			temp->cost *= -1; 
 			i--;
 		}
 		temp = temp->next;
@@ -64,10 +64,10 @@ void	calc_target(t_list **stack_a, t_list **stack_b)
 		temp1 = *stack_a;
 		while (temp1)
 		{
-			temp2->target = temp1->index;
+			temp2->target_cost = temp1->cost;
 			if (temp1->index > temp2->index)
 			{
-				temp2->target = temp1->index;
+				temp2->target_cost = temp1->cost;
 				break ;
 			}
 			else
@@ -75,4 +75,41 @@ void	calc_target(t_list **stack_a, t_list **stack_b)
 		}
 		temp2 = temp2->next;
 	}
+}
+
+void	push_to_b(t_list **stack_a, t_list **stack_b)
+{
+	int	size;
+
+	size = stack_size(stack_a);
+	while (stack_size(stack_a) > 3)
+	{
+		if ((*stack_a)->index <= (size / 2))
+		{
+			push(stack_b, stack_a);
+			write(1, "pb\n", 3);
+		}
+		else
+		{
+			rotate(stack_a);
+			write(1, "ra\n", 3);
+		}
+		if ((*stack_a)->index < size - 2)
+		{
+			push(stack_b, stack_a);
+			write(1, "pb\n", 3);
+		}
+	}
+}
+
+void	algo(t_list **stack_a, t_list **stack_b)
+{
+	index_stack(stack_a);
+	push_to_b(stack_a, stack_b);
+	if ((stack_size(stack_a) == 3) && check_sort(stack_a))
+		sort_3(stack_a);
+	calc_cost(stack_a);
+	calc_cost(stack_b);
+	calc_target(stack_a, stack_b);
+	best_move(stack_b);
 }
