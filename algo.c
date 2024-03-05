@@ -17,6 +17,7 @@ void	calc_position(t_list **stack)
 	t_list	*temp;
 	int i;
 
+    
 	i = 0;
 	temp = *stack;
 	while(temp)
