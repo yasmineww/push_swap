@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 21:58:55 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/04 18:26:39 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/05 23:33:08 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	calc_cost(t_list **stack)
 
 	calc_position(stack);
 	size = stack_size(stack);
+	printf("size == %d\n", stack_size(stack));
 	temp = *stack;
 	i = (size / 2);
 	if (size % 2 == 1)
@@ -68,6 +69,7 @@ void	calc_target(t_list **stack_a, t_list **stack_b)
 			if (temp1->index > temp2->index)
 			{
 				temp2->target_cost = temp1->cost;
+				temp2->target_node = temp1->position;
 				break ;
 			}
 			else
@@ -108,8 +110,11 @@ void	algo(t_list **stack_a, t_list **stack_b)
 	push_to_b(stack_a, stack_b);
 	if ((stack_size(stack_a) == 3) && check_sort(stack_a))
 		sort_3(stack_a);
-	calc_cost(stack_a);
-	calc_cost(stack_b);
-	calc_target(stack_a, stack_b);
-	best_move(stack_b);
+	while (stack_b)
+	{
+		calc_cost(stack_a);
+		calc_cost(stack_b);
+		calc_target(stack_a, stack_b);
+		best_move(stack_a, stack_b);
+	}
 }
