@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:42:18 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/04 18:58:12 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:40:10 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,14 @@ void	calc_position(t_list **stack);
 void	calc_cost(t_list **stack);
 void	calc_target(t_list **stack_a, t_list **stack_b);
 void	index_3(t_list **stack);
-void	best_move(t_list **stack_b);
+void	best_move(t_list **stack_a, t_list **stack_b);
 int		absolute(int cost);
+void	apply_actions(t_list *temp, t_list **stack_a, t_list **stack_b);
+void	compare_elements(t_list *temp1);
+void	rrr(t_list *temp_b, t_list **stack_a, t_list **stack_b);
+void	rr(t_list *temp_b, t_list **stack_a, t_list **stack_b);
+void	rotate_a(t_list *temp_b, t_list **stack_a);
+void	rotate_b(t_list *temp_b, t_list **stack_b);
+void	last_sort(t_list **stack_a);
 
 #endif
