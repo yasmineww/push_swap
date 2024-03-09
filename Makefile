@@ -1,6 +1,6 @@
 NAME = push_swap
 
-SRC = main.c parsing.c utils.c ft_split.c actions.c sorting.c algo.c
+SRC = main.c parsing.c utils.c ft_split.c actions.c sorting.c algo.c utils_algo.c rotations.c
 
 BONUS =
 

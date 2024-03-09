@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:10:01 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/02/27 13:23:34 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/09 20:29:16 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 void	check_empty(char *av)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	if (!av[0])
 	{
 		print_msg();
@@ -81,23 +79,17 @@ void	parse(char **av, t_list **stack_a)
 	}
 }
 
-int	check_sort(t_list **stack_a)
+int	stack_size(t_list **stack_a)
 {
-	t_list	*node1;
-	t_list	*node2;
+	t_list	*ptr;
+	int		size;
 
-	node1 = *stack_a;
-	node2 = node1->next;
-	while (node1->next != NULL)
+	size = 1;
+	ptr = *stack_a;
+	while (ptr->next != NULL)
 	{
-		while (node2 != NULL)
-		{
-			if (node1->content > node2->content)
-				return (1);
-			node2 = node2->next; 
-		}
-		node1 = node1->next;
-		node2 = node1->next;
+		size++;
+		ptr = ptr->next;
 	}
-	return (0);
+	return (size);
 }
