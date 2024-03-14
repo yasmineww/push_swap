@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:05:18 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/09 20:52:38 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/14 22:18:35 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ int	main(int ac, char **av)
 	else if (ac >= 2)
 		parse(av, &stack_a);
 	sort(&stack_a, &stack_b);
-	// while (stack_a != NULL)
-	// {
-    //    	printf("content a: |%d|, index : (%d)\n", (stack_a)->content, stack_a->index);
-    //     stack_a = stack_a->next;
-    // }
-	// puts("--------------");
-	// while (stack_b != NULL)
-	// {
-    //    	printf("content b: |%d|, index : (%d)\n", (stack_b)->content, (stack_b)->index);
-    //     stack_b = stack_b->next;
-    // }
+	while (stack_a != NULL)
+	{
+       	printf("content a: |%d|, index : (%d)\n", (stack_a)->content, stack_a->index);
+        stack_a = stack_a->next;
+    }
+	puts("--------------");
+	while (stack_b != NULL)
+	{
+       	printf("content b: |%d|, index : (%d)\n", (stack_b)->content, (stack_b)->index);
+        stack_b = stack_b->next;
+    }
 	return (0);
 }

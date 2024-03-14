@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:04:38 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/06 19:09:24 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/14 22:32:44 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,7 @@ void	index_3(t_list **stack)
 
 void	sort_3(t_list **stack_a)
 {
-	int size;
-
 	index_3(stack_a);
-	size = stack_size(stack_a);
 	if ((*stack_a)->index_3 == 3)
 	{
 		rotate(stack_a);
@@ -97,16 +94,16 @@ void	sort_3(t_list **stack_a)
 
 void	sort(t_list **stack_a, t_list **stack_b)
 {
-	int	size;
+	// int	size;
 
-	size = stack_size(stack_a);
-	if (size == 2)
-	{
-		swap(stack_a);
-		write(1, "sa\n", 3);
-	}
-	else if ((size == 3) && check_sort(stack_a))
-		sort_3(stack_a);
-	else if ((size > 3) && check_sort(stack_a))
+	// size = stack_size(stack_a);
+	// if (size == 2 && check_sort(stack_a))
+	// {
+	// 	swap(stack_a);
+	// 	write(1, "sa\n", 3);
+	// }
+	// else if ((size == 3) && check_sort(stack_a))
+	// 	sort_3(stack_a);
+	// else if ((size > 3) && check_sort(stack_a))
 		algo(stack_a, stack_b);
 }

@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:10:01 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/09 20:29:16 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/14 22:40:14 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ int	stack_size(t_list **stack_a)
 	t_list	*ptr;
 	int		size;
 
-	size = 1;
+	size = 0;
 	ptr = *stack_a;
-	while (ptr->next != NULL)
+	while (ptr)
 	{
 		size++;
 		ptr = ptr->next;
