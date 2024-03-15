@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:43:56 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/15 21:14:43 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/15 23:20:30 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	compare_elements(t_list *temp1)
 void	apply_actions(int cost_a, int cost_b, t_list **stack_a, t_list **stack_b)
 {
 	if (cost_a < 0 && cost_b < 0)
-		rrr(cost_a, cost_b, stack_a, stack_b);
+		rrr(&cost_a, &cost_b, stack_a, stack_b);
 	else if (cost_a > 0 && cost_b > 0)
-		rr(cost_a, cost_b, stack_a, stack_b);		
-	rotate_a(cost_a, stack_a);
-	rotate_b(cost_b, stack_b);
+		rr(&cost_a, &cost_b, stack_a, stack_b);		
+	rotate_a(&cost_a, stack_a);
+	rotate_b(&cost_b, stack_b);
 	push(stack_a, stack_b);
 	write(1, "pa\n", 3);
 }
@@ -73,6 +73,7 @@ void	best_move(t_list **stack_a, t_list **stack_b)
 		}
 		temp1 = temp1->next;
 	}
+	// puts("---------here---------");
 	// printf("cost a %d\n", cost_a);
 	// printf("cost b %d\n", cost_b);
 	apply_actions(cost_a, cost_b, stack_a, stack_b);

@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:42:18 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/15 21:00:20 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/15 23:15:46 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,12 @@ void	index_3(t_list **stack);
 void	best_move(t_list **stack_a, t_list **stack_b);
 int		absolute(int cost);
 void	apply_actions(int cost_a, int cost_b, t_list **stack_a, t_list **stack_b);
-void	rrr(int cost_a, int cost_b, t_list **stack_a, t_list **stack_b);
-void	rr(int cost_a, int cost_b, t_list **stack_a, t_list **stack_b);
-void	rotate_a(int cost_a, t_list **stack_a);
-void	rotate_b(int cost_b, t_list **stack_b);
+void	rrr(int *cost_a, int *cost_b, t_list **stack_a, t_list **stack_b);
+void	rr(int *cost_a, int *cost_b, t_list **stack_a, t_list **stack_b);
+void	rotate_a(int *cost_a, t_list **stack_a);
+void	rotate_b(int *cost_b, t_list **stack_b);
 void	last_sort(t_list **stack_a);
 void	compare_elements(t_list *temp1);
+int		biggest(t_list **stack_a);
 
 #endif
