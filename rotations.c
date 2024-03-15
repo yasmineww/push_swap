@@ -6,70 +6,70 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:52:37 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/09 20:49:31 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:58:20 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rrr(t_list *temp_b, t_list **stack_a, t_list **stack_b)
+void	rrr(int cost_a, int cost_b, t_list **stack_a, t_list **stack_b)
 {
-	while (temp_b->cost != 0 && temp_b->target_cost != 0)
+	while (cost_a != 0 && cost_b != 0)
 	{
 		reverse_rotate(stack_a);
 		reverse_rotate(stack_b);
 		write(1, "rrr\n", 4);
-		temp_b->cost++;
-		temp_b->target_cost++;
+		cost_a++;
+		cost_b++;
 	}
 }
 
-void	rr(t_list *temp_b, t_list **stack_a, t_list **stack_b)
+void	rr(int cost_a, int cost_b, t_list **stack_a, t_list **stack_b)
 {
-	while (temp_b->cost != 0 && temp_b->target_cost != 0)
+	while (cost_a != 0 && cost_b != 0)
 	{
 		rotate(stack_a);
 		rotate(stack_b);
 		write(1, "rr\n", 3);
-		temp_b->target_cost--;
-		temp_b->cost--;
+		cost_a--;
+		cost_b--;
 	}
 }
 
-void	rotate_a(t_list *temp_b, t_list **stack_a)
+void	rotate_a(int cost_a, t_list **stack_a)
 {
-	while (temp_b->target_cost != 0)
+	while (cost_a != 0)
 	{
-		if(temp_b->target_cost > 0)
+		if(cost_a > 0)
 		{
 			rotate(stack_a);
 			write(1, "ra\n", 3);
-			temp_b->target_cost--;
+			cost_a--;
 		}
-		else if (temp_b->target_cost < 0)
+		else if (cost_a < 0)
 		{
 			reverse_rotate(stack_a);
 			write(1, "rra\n", 4);
-			temp_b->target_cost++;
+			cost_a++;
 		}
 	}
 }
 
-void	rotate_b(t_list *temp_b, t_list **stack_b)
+void	rotate_b(int cost_b, t_list **stack_b)
 {
-	while (temp_b->cost != 0)
+	while (cost_b != 0)
 	{
-		if(temp_b->cost > 0)
+		if(cost_b > 0)
 		{
 			rotate(stack_b);
 			write(1, "rb\n", 3);
-			temp_b->cost--;
+			cost_b--;
 		}
-		else if (temp_b->cost < 0)
+		else if (cost_b < 0)
 		{
 			reverse_rotate(stack_b);
 			write(1, "rrb\n", 4);
-			temp_b->cost++;
+			cost_b++;
 		}
 	}
 }

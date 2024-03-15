@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:18:55 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/05 23:21:45 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/15 22:07:16 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,12 @@ void	add_back(t_list **stack_a, int content)
 		return ;
 	node->content = content;
 	node->next = NULL;
+	node->index = 0;
+	node->index_3 = 0;
+	node->position = 0;
+	node->target_cost = 100;
+	node->cost = 0;
+	node->sum = 0;
 	if ((*stack_a) == NULL)
 	{
 		*stack_a = node;

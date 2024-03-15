@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:43:56 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/09 20:50:01 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/15 21:14:43 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	compare_elements(t_list *temp1)
 	t_list	*temp2;
 	int		tr;
 
-	while (temp1->next)
+	while (temp1)
 	{
 		temp2 = temp1->next;
 		tr = 1;
@@ -42,14 +42,14 @@ void	compare_elements(t_list *temp1)
 	}
 }
 
-void	apply_actions(t_list *temp_b, t_list **stack_a, t_list **stack_b)
+void	apply_actions(int cost_a, int cost_b, t_list **stack_a, t_list **stack_b)
 {
-	if (temp_b->cost < 0 && temp_b->target_cost < 0)
-		rrr(temp_b, stack_a, stack_b);
-	else if (temp_b->cost > 0 && temp_b->target_cost > 0)
-		rr(temp_b, stack_a, stack_b);		
-	rotate_a(temp_b, stack_a);
-	rotate_b(temp_b, stack_b);
+	if (cost_a < 0 && cost_b < 0)
+		rrr(cost_a, cost_b, stack_a, stack_b);
+	else if (cost_a > 0 && cost_b > 0)
+		rr(cost_a, cost_b, stack_a, stack_b);		
+	rotate_a(cost_a, stack_a);
+	rotate_b(cost_b, stack_b);
 	push(stack_a, stack_b);
 	write(1, "pa\n", 3);
 }
@@ -57,16 +57,25 @@ void	apply_actions(t_list *temp_b, t_list **stack_a, t_list **stack_b)
 void	best_move(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*temp1;
+	int		cost_a;
+	int		cost_b;
+	int		max;
 
 	temp1 = *stack_b;
+	max = 2146473647;
 	while (temp1)
 	{
-		temp1->sum = absolute(temp1->cost) + absolute(temp1->target_cost);
+		if(absolute(temp1->cost) + absolute(temp1->target_cost) < max)
+		{
+			max = absolute(temp1->cost) + absolute(temp1->target_cost);
+			cost_a = temp1->target_cost;
+			cost_b = temp1->cost;
+		}
 		temp1 = temp1->next;
 	}
-	temp1 = *stack_b;
-	compare_elements(temp1);
-	apply_actions(temp1, stack_a, stack_b);
+	// printf("cost a %d\n", cost_a);
+	// printf("cost b %d\n", cost_b);
+	apply_actions(cost_a, cost_b, stack_a, stack_b);
 }
 
 void	last_sort(t_list **stack_a)

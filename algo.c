@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 21:58:55 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/14 22:42:30 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/15 22:37:20 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,16 @@ void	calc_target(t_list **stack_a, t_list **stack_b)
 	t_list	*temp2;
 	int		max;
 
-	max = 2147483647;
 	temp2 = *stack_b;
 	while (temp2)
 	{
+		max = 2147483647;
 		temp1 = *stack_a;
 		while (temp1)
 		{
 			if ((temp1->index > temp2->index) && temp1->index < max)
-			{
+			{	
+				// printf("temp1.index |%d|\t temp2.index |%d|\t\n", temp1->index, temp2->index);
 				max = temp1->index;
 				temp2->target_cost = temp1->cost;
 			}
@@ -107,12 +108,34 @@ int	my_stack_size(t_list **stack_a)
 	while (ptr)
 	{
 		size++;
-		printf("num=%d\n", ptr->content);
+		// printf("num=%d\n", ptr->content);
 		ptr = ptr->next;
 	}
 	return (size);
 }
 
+
+void	printerB(t_list **stack)
+{
+	puts("-------STACKB--------------");
+	t_list *temp2 = *stack;
+	while (temp2)
+	{
+		printf("index == %d\tcostB-->%d targetCost-->%d\n", temp2->index ,temp2->cost,temp2->target_cost);
+		temp2 = temp2->next;
+	}
+}
+
+void	printerA(t_list **stack)
+{
+	puts("----------STACKA-----------");
+	t_list *temp1 = *stack;
+	while (temp1)
+	{
+		printf("index == %d\tcostA-->%d\n", temp1->index ,temp1->cost);
+		temp1 = temp1->next;
+	}
+}
 
 void	algo(t_list **stack_a, t_list **stack_b)
 {
@@ -120,32 +143,16 @@ void	algo(t_list **stack_a, t_list **stack_b)
 	push_to_b(stack_a, stack_b);
 	if (check_sort(stack_a))
 		sort_3(stack_a);
-	t_list	*ptr;
-	ptr = *stack_a;
-	while (ptr)
+	while (*stack_b)
 	{
-		printf("Anum=%d\n", ptr->content);
-		ptr = ptr->next;
+		calc_cost(stack_a);
+		calc_cost(stack_b);
+		calc_target(stack_a, stack_b);
+		printerB(stack_b);
+		printerA(stack_a);
+		best_move(stack_a, stack_b);
 	}
-
-	// t_list	*ptr2;
-	// ptr2 = *stack_b;
-	// while (ptr2)
-	// {
-	// 	printf("Bnum=%d\t", ptr2->content);
-	// 	printf("Bindex=%d\n", ptr2->index);
-		
-	// 	ptr2 = ptr2->next;
-	// }
-	// printf("size %d\n", my_stack_size(stack_a));
-	// while (*stack_b)
-	// {
-	// 	calc_cost(stack_a);
-	// 	calc_cost(stack_b);
-	// 	calc_target(stack_a, stack_b);
-	// 	best_move(stack_a, stack_b);
-	// }
-	// if (&check_sort == 0)
-	// 	return ;
-	// last_sort(stack_a);
+	if (check_sort(stack_a) == 0)
+		return ;
+	last_sort(stack_a);
 }
