@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:04:38 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/14 22:32:44 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/17 02:35:49 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,46 @@ void	index_3(t_list **stack)
 	}
 }
 
+void	index_4(t_list **stack)
+{
+	t_list	*temp1;
+	t_list	*temp2;
+
+	temp1 = *stack;
+	while (temp1 != NULL)
+	{
+		temp2 = *stack;
+		temp1->index_4 = 1;
+		while (temp2 != NULL)
+		{
+			if (temp1->content > temp2->content)
+				temp1->index_4 += 1;
+			temp2 = temp2->next;
+		}
+		temp1 = temp1->next;
+	}
+}
+
+void	index_5(t_list **stack)
+{
+	t_list	*temp1;
+	t_list	*temp2;
+
+	temp1 = *stack;
+	while (temp1 != NULL)
+	{
+		temp2 = *stack;
+		temp1->index_5 = 1;
+		while (temp2 != NULL)
+		{
+			if (temp1->content > temp2->content)
+				temp1->index_5 += 1;
+			temp2 = temp2->next;
+		}
+		temp1 = temp1->next;
+	}
+}
+
 void	sort_3(t_list **stack_a)
 {
 	index_3(stack_a);
@@ -92,18 +132,68 @@ void	sort_3(t_list **stack_a)
 	}
 }
 
+void	sort_5(t_list **stack_a, t_list **stack_b)
+{
+	int	size;
+	
+	size = stack_size(stack_a);
+	index_5(stack_a);
+	while (stack_size(stack_a) != 4)
+	{
+		if ((*stack_a)->index_5 == 1)
+		{
+			push(stack_b, stack_a);
+			write(1, "pb\n", 3);
+		}
+		else
+		{
+			rotate(stack_a);
+			write(1, "ra\n", 3);
+		}
+	}
+	if (check_sort(stack_a))
+		sort_4(stack_a, stack_b);
+	push(stack_a, stack_b);
+	write(1, "pa\n", 3);
+}
+
+void	sort_4(t_list **stack_a, t_list **stack_b)
+{
+	int	size;
+	
+	size = stack_size(stack_a);
+	index_4(stack_a);
+	while (stack_size(stack_a) != 3)
+	{
+		if ((*stack_a)->index_4 == 1)
+		{
+			push(stack_b, stack_a);
+			write(1, "pb\n", 3);
+		}
+		else
+		{
+			rotate(stack_a);
+			write(1, "ra\n", 3);
+		}
+	}
+	if (check_sort(stack_a))
+		sort_3(stack_a);
+	push(stack_a, stack_b);
+	write(1, "pa\n", 3);
+}
+
 void	sort(t_list **stack_a, t_list **stack_b)
 {
-	// int	size;
+	int	size;
 
-	// size = stack_size(stack_a);
-	// if (size == 2 && check_sort(stack_a))
-	// {
-	// 	swap(stack_a);
-	// 	write(1, "sa\n", 3);
-	// }
-	// else if ((size == 3) && check_sort(stack_a))
-	// 	sort_3(stack_a);
-	// else if ((size > 3) && check_sort(stack_a))
+	size = stack_size(stack_a);
+	if (size == 2 && check_sort(stack_a))
+	{
+		swap(stack_a);
+		write(1, "sa\n", 3);
+	}
+	else if ((size == 3) && check_sort(stack_a))
+		sort_3(stack_a);
+	else if ((size > 3) && check_sort(stack_a))
 		algo(stack_a, stack_b);
 }

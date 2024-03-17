@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:43:56 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/15 23:20:30 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/17 01:03:10 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	apply_actions(int cost_a, int cost_b, t_list **stack_a, t_list **stack_b)
 	if (cost_a < 0 && cost_b < 0)
 		rrr(&cost_a, &cost_b, stack_a, stack_b);
 	else if (cost_a > 0 && cost_b > 0)
-		rr(&cost_a, &cost_b, stack_a, stack_b);		
+		rr(&cost_a, &cost_b, stack_a, stack_b);
 	rotate_a(&cost_a, stack_a);
 	rotate_b(&cost_b, stack_b);
 	push(stack_a, stack_b);
@@ -89,20 +89,20 @@ void	last_sort(t_list **stack_a)
 		temp = temp->next;
 	if (temp->position < (stack_size(stack_a) / 2))
 	{
-		while (temp->position < stack_size(stack_a))
-		{
-			reverse_rotate(stack_a);
-			write(1, "rra\n", 4);
-			temp->position++;
-		}
-	}
-	else
-	{
 		while (temp->position > 0)
 		{
 			rotate(stack_a);
 			write(1, "ra\n", 3);
 			temp->position--;
+		}
+	}
+	else
+	{
+		while (temp->position < stack_size(stack_a))
+		{
+			reverse_rotate(stack_a);
+			write(1, "rra\n", 4);
+			temp->position++;
 		}
 	}
 }

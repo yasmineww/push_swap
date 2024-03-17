@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:42:18 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/15 23:15:46 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/17 00:56:43 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef struct s_list
 	int				content;
 	int				index;
 	int				index_3;
+	int				index_4;
+	int				index_5;
 	int				position;
 	int				target_cost;
 	int				cost;
@@ -63,6 +65,9 @@ void	rotate_a(int *cost_a, t_list **stack_a);
 void	rotate_b(int *cost_b, t_list **stack_b);
 void	last_sort(t_list **stack_a);
 void	compare_elements(t_list *temp1);
-int		biggest(t_list **stack_a);
+void	sort_4(t_list **stack_a, t_list **stack_b);
+void	index_4(t_list **stack);
+void	sort_5(t_list **stack_a, t_list **stack_b);
+void	index_5(t_list **stack);
 
 #endif
