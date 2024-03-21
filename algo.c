@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 21:58:55 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/17 02:33:31 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/17 16:20:15 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	calc_position(t_list **stack)
 {
 	t_list	*temp;
-	int i;
+	int		i;
 
 	i = 0;
 	temp = *stack;
-	while(temp)
+	while (temp)
 	{
 		temp->position = i;
 		i++;
@@ -46,7 +46,7 @@ void	calc_cost(t_list **stack)
 		else
 		{
 			temp->cost = i;
-			temp->cost *= -1; 
+			temp->cost *= -1;
 			i--;
 		}
 		temp = temp->next;

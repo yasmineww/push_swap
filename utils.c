@@ -6,15 +6,16 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:18:55 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/17 00:57:08 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/19 02:07:22 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_msg(void)
+void	print_msg(t_list **stack)
 {
 	write(1, "Error\n", 6);
+	free_leaks(stack);
 	exit(1);
 }
 
@@ -31,7 +32,7 @@ int	ft_strlen(char	*av)
 	return (count);
 }
 
-int	my_atoi(char *str)
+int	my_atoi(char *str, t_list **stack)
 {
 	long	res;
 	int		sign;
@@ -46,7 +47,7 @@ int	my_atoi(char *str)
 			sign *= -1;
 		str++;
 		if (!(*str >= '0' && *str <= '9'))
-			print_msg();
+			print_msg(stack);
 	}
 	while (*str >= '0' && *str <= '9')
 	{
@@ -56,7 +57,7 @@ int	my_atoi(char *str)
 	res *= sign;
 	if (res > 2147483647 || res < -2147483648 || *str == '-' || *str == '+'
 		|| (ft_intlen(res) > 10 && res > 0) || (ft_intlen(res) > 11 && res < 0))
-		print_msg();
+		print_msg(stack);
 	return (res);
 }
 
@@ -72,10 +73,8 @@ void	add_back(t_list **stack_a, int content)
 	node->next = NULL;
 	node->index = 0;
 	node->index_3 = 0;
-	node->index_4 = 0;
-	node->index_5 = 0;
 	node->position = 0;
-	node->target_cost = 100;
+	node->target_cost = 0;
 	node->cost = 0;
 	node->sum = 0;
 	if ((*stack_a) == NULL)
@@ -85,9 +84,7 @@ void	add_back(t_list **stack_a, int content)
 	}
 	temp = *stack_a;
 	while (temp->next != NULL)
-	{
 		temp = temp->next;
-	}
 	temp->next = node;
 }
 

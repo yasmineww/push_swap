@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 12:17:26 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/14 21:36:51 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/17 16:19:06 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	swap(t_list **stack)
 	if (node1 != NULL && node2 != NULL)
 	{
 		node1->next = node2->next;
-		node2->next = node1;;
+		node2->next = node1;
 	}
 	*stack = node2;
 }

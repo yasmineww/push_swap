@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:42:18 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/17 00:56:43 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:23:12 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# 
 
 typedef struct s_list
 {
@@ -32,15 +33,15 @@ typedef struct s_list
 }	t_list;
 
 void	parse(char **av, t_list **stack_a);
-void	check_empty(char *av);
-void	print_msg(void);
+void	check_empty(char *av, t_list **stack);
+void	print_msg(t_list **stack);
 int		ft_strlen(char	*av);
-void	check_valid(char *av);
-int		my_atoi(char *str);
+void	check_valid(char *av, t_list **stack);
+int		my_atoi(char *str, t_list **stack);
 int		ft_intlen(int n);
 void	add_back(t_list **stack_a, int content);
 char	**ft_split(char const *s, char c);
-void	check_exist(t_list *stack, int res);
+void	check_exist(t_list **stack, int res);
 void	swap(t_list **stack);
 void	rotate(t_list **stack);
 void	reverse_rotate(t_list **stack);
@@ -58,16 +59,19 @@ void	calc_target(t_list **stack_a, t_list **stack_b);
 void	index_3(t_list **stack);
 void	best_move(t_list **stack_a, t_list **stack_b);
 int		absolute(int cost);
-void	apply_actions(int cost_a, int cost_b, t_list **stack_a, t_list **stack_b);
+void	apply_actions(int cost_a, int cost_b, t_list **stack_a,
+			t_list **stack_b);
 void	rrr(int *cost_a, int *cost_b, t_list **stack_a, t_list **stack_b);
 void	rr(int *cost_a, int *cost_b, t_list **stack_a, t_list **stack_b);
 void	rotate_a(int *cost_a, t_list **stack_a);
 void	rotate_b(int *cost_b, t_list **stack_b);
 void	last_sort(t_list **stack_a);
-void	compare_elements(t_list *temp1);
 void	sort_4(t_list **stack_a, t_list **stack_b);
 void	index_4(t_list **stack);
 void	sort_5(t_list **stack_a, t_list **stack_b);
 void	index_5(t_list **stack);
+void	free_leaks(t_list **stack);
+void	apply_actions_bonus(t_list **stack_a, t_list **stack_b);
+int		ft_strcmp(char *s1, char *s2);
 
 #endif

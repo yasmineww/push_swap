@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:43:56 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/17 01:03:10 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:32:10 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,8 @@ int	absolute(int cost)
 	return (cost);
 }
 
-void	compare_elements(t_list *temp1)
-{
-	t_list	*temp2;
-	int		tr;
-
-	while (temp1)
-	{
-		temp2 = temp1->next;
-		tr = 1;
-		while (temp2)
-		{
-			if (temp1->sum < temp2->sum)
-				temp2 = temp2->next;
-			else
-				break ;
-			tr = 0;
-		}
-		if (tr == 0)
-			break;
-		temp1 = temp1->next;
-	}
-}
-
-void	apply_actions(int cost_a, int cost_b, t_list **stack_a, t_list **stack_b)
+void	apply_actions(int cost_a, int cost_b, t_list **stack_a,
+			t_list **stack_b)
 {
 	if (cost_a < 0 && cost_b < 0)
 		rrr(&cost_a, &cost_b, stack_a, stack_b);
@@ -65,7 +43,7 @@ void	best_move(t_list **stack_a, t_list **stack_b)
 	max = 2146473647;
 	while (temp1)
 	{
-		if(absolute(temp1->cost) + absolute(temp1->target_cost) < max)
+		if (absolute(temp1->cost) + absolute(temp1->target_cost) < max)
 		{
 			max = absolute(temp1->cost) + absolute(temp1->target_cost);
 			cost_a = temp1->target_cost;
@@ -73,9 +51,6 @@ void	best_move(t_list **stack_a, t_list **stack_b)
 		}
 		temp1 = temp1->next;
 	}
-	// puts("---------here---------");
-	// printf("cost a %d\n", cost_a);
-	// printf("cost b %d\n", cost_b);
 	apply_actions(cost_a, cost_b, stack_a, stack_b);
 }
 
@@ -105,4 +80,22 @@ void	last_sort(t_list **stack_a)
 			temp->position++;
 		}
 	}
+}
+
+void	free_leaks(t_list **stack)
+{
+	t_list	*temp;
+
+	if (!stack || !(*stack))
+		return ;
+	temp = *stack;
+	while (*stack)
+	{
+		printf("dkhl : %d\n", (*stack)->content);
+		temp = (*stack)->next;
+		free(*stack);
+		printf("free\n");
+		*stack = temp;
+	}
+	*stack = NULL;
 }

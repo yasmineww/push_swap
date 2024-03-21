@@ -1,12 +1,14 @@
 NAME = push_swap
 
-SRC = main.c parsing.c utils.c ft_split.c actions.c sorting.c algo.c utils_algo.c rotations.c
+NAME_BONUS = checker
 
-BONUS =
+SRC = main.c parsing.c utils.c utils_2.c ft_split.c actions.c sorting.c algo.c utils_algo.c rotations.c
+
+BONUS = push_swap_bonus.c get_next_line.c get_next_line_utils.c parsing.c utils.c utils_2.c ft_split.c actions.c sorting.c algo.c utils_algo.c rotations.c
 
 OBJ = $(SRC:.c=.o) 
 
-BONUS_OBJ = 
+BONUS_OBJ = $(BONUS:.c=.o) 
 
 FLAG = -Wall -Wextra -Werror -g
 
@@ -19,14 +21,16 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	cc $(OBJ) -o $(NAME)
+
+$(NAME_BONUS): $(BONUS_OBJ)
+	cc $(BONUS_OBJ) -o $(NAME_BONUS)
 	
-bonus: $(BONUS_OBJ)
-	$(NAME) $(BONUS_OBJ)
+bonus: $(NAME_BONUS)  
 
 clean:
 	rm -rf $(OBJ) $(BONUS_OBJ) 
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(NAME_BONUS)
 
 re: fclean all
