@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:43:56 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/19 13:32:10 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/21 23:33:04 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,8 @@ void	free_leaks(t_list **stack)
 	temp = *stack;
 	while (*stack)
 	{
-		printf("dkhl : %d\n", (*stack)->content);
 		temp = (*stack)->next;
 		free(*stack);
-		printf("free\n");
 		*stack = temp;
 	}
 	*stack = NULL;

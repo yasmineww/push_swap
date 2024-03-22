@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   actions.c                                          :+:      :+:    :+:   */
+/*   actions_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 12:17:26 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/22 20:38:08 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:14:38 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 void	swap(t_list **stack)
 {
@@ -67,10 +67,30 @@ void	push(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*top_stack;
 
-	if (*stack_b == NULL)
+	if (*stack_b == NULL || *stack_a == NULL)
 		return ;
 	top_stack = *stack_b;
 	*stack_b = (*stack_b)->next;
 	top_stack->next = *stack_a;
 	*stack_a = top_stack;
+}
+
+int	check_sort(t_list **stack_a)
+{
+	t_list	*node1;
+	t_list	*node2;
+
+	node1 = *stack_a;
+	while (node1->next != NULL)
+	{
+		node2 = node1->next;
+		while (node2 != NULL)
+		{
+			if (node1->content > node2->content)
+				return (1);
+			node2 = node2->next;
+		}
+		node1 = node1->next;
+	}
+	return (0);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:18:55 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/22 16:55:26 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:12:18 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 void	print_msg(t_list **stack)
 {
@@ -71,12 +71,6 @@ void	add_back(t_list **stack_a, int content)
 		return ;
 	node->content = content;
 	node->next = NULL;
-	node->index = 0;
-	node->index_3 = 0;
-	node->position = 0;
-	node->target_cost = 0;
-	node->cost = 0;
-	node->sum = 0;
 	if ((*stack_a) == NULL)
 	{
 		*stack_a = node;
@@ -88,17 +82,30 @@ void	add_back(t_list **stack_a, int content)
 	temp->next = node;
 }
 
-int	ft_intlen(int n)
+void	parse(char **av, t_list **stack_a)
 {
-	int	size;
+	int		i;
+	int		res;
+	int		j;
+	char	**s;
 
-	size = 0;
-	if (n <= 0)
-		size++;
-	while (n != 0)
+	i = 1;
+	while (av[i])
 	{
-		n = n / 10;
-		size++;
+		check_empty(av[i], stack_a);
+		check_valid(av[i], stack_a);
+		s = ft_split(av[i], ' ');
+		j = 0;
+		while (s[j])
+		{
+			res = my_atoi(s[j], stack_a);
+			check_exist(stack_a, res, &s[j]);
+			add_back(stack_a, res);
+			free(s[j]);
+			s[j] = NULL;
+			j++;
+		}
+		free(s);
+		i++;
 	}
-	return (size);
 }

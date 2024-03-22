@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:10:01 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/22 17:58:16 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/22 21:13:26 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 void	check_empty(char *av, t_list **stack)
 {
@@ -62,26 +62,6 @@ void	check_exist(t_list **stack, int res, char **s)
 	}
 }
 
-int	check_sort(t_list **stack_a)
-{
-	t_list	*node1;
-	t_list	*node2;
-
-	node1 = *stack_a;
-	while (node1->next != NULL)
-	{
-		node2 = node1->next;
-		while (node2 != NULL)
-		{
-			if (node1->content > node2->content)
-				return (1);
-			node2 = node2->next;
-		}
-		node1 = node1->next;
-	}
-	return (0);
-}
-
 int	stack_size(t_list **stack_a)
 {
 	t_list	*ptr;
@@ -93,6 +73,21 @@ int	stack_size(t_list **stack_a)
 	{
 		size++;
 		ptr = ptr->next;
+	}
+	return (size);
+}
+
+int	ft_intlen(int n)
+{
+	int	size;
+
+	size = 0;
+	if (n <= 0)
+		size++;
+	while (n != 0)
+	{
+		n = n / 10;
+		size++;
 	}
 	return (size);
 }

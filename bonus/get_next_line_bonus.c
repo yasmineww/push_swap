@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 17:21:54 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/19 13:29:09 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/22 20:59:29 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "push_swap_bonus.h"
 
 char	*ft_strjoin(char *stock, char *buff)
 {
@@ -95,4 +95,14 @@ char	*get_next_line(int fd)
 	line = line_to_return(stock);
 	stock = modify_static(stock, line);
 	return (line);
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return (*s1 - *s2);
 }

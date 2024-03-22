@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:52:37 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/15 23:19:54 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/21 22:08:38 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	rotate_a(int *cost_a, t_list **stack_a)
 {
 	while (*cost_a != 0)
 	{
-		if(*cost_a > 0)
+		if (*cost_a > 0)
 		{
 			rotate(stack_a);
 			write(1, "ra\n", 3);
@@ -59,7 +59,7 @@ void	rotate_b(int *cost_b, t_list **stack_b)
 {
 	while (*cost_b != 0)
 	{
-		if(*cost_b > 0)
+		if (*cost_b > 0)
 		{
 			rotate(stack_b);
 			write(1, "rb\n", 3);
