@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:42:18 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/22 21:05:53 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/22 21:21:48 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ typedef struct s_list
 	int				content;
 	int				index;
 	int				index_3;
-	int				index_4;
-	int				index_5;
 	int				position;
 	int				target_cost;
 	int				cost;

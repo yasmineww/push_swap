@@ -6,16 +6,11 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:05:18 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/22 21:12:57 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:17:07 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// void	f()
-// {
-// 	system ("leaks push_swap");
-// }
 
 void	parse(char **av, t_list **stack_a)
 {
@@ -50,7 +45,6 @@ int	main(int ac, char **av)
 	t_list	*stack_a;
 	t_list	*stack_b;
 
-	atexit(f);
 	stack_a = NULL;
 	stack_b = NULL;
 	if (ac >= 2)
