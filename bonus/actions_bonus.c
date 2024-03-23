@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 12:17:26 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/23 16:17:56 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:18:17 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	swap(t_list **stack)
 	t_list	*node1;
 	t_list	*node2;
 
-	if (*stack == NULL)
+	if (*stack == NULL || stack_size(stack) < 2)
 		return ;
 	node1 = *stack;
 	node2 = node1->next;
@@ -34,7 +34,7 @@ void	rotate(t_list **stack)
 	t_list	*old_head;
 	t_list	*new_head;
 
-	if (*stack == NULL)
+	if (*stack == NULL || stack_size(stack) < 2)
 		return ;
 	old_head = *stack;
 	new_head = (*stack)->next;
@@ -50,7 +50,7 @@ void	reverse_rotate(t_list **stack)
 	t_list	*new_head;
 	t_list	*last_node;
 
-	if (*stack == NULL)
+	if (*stack == NULL || stack_size(stack) < 2)
 		return ;
 	new_head = *stack;
 	while (new_head->next != NULL)
