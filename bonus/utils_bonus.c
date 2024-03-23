@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:18:55 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/22 17:12:18 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/03/23 22:38:17 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ void	parse(char **av, t_list **stack_a)
 		check_empty(av[i], stack_a);
 		check_valid(av[i], stack_a);
 		s = ft_split(av[i], ' ');
+		if (s == NULL)
+			return ;
 		j = 0;
 		while (s[j])
 		{
