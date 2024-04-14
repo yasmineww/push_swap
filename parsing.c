@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:10:01 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/23 16:23:31 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/04/14 19:10:47 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	check_sort(t_list **stack_a)
 	t_list	*node2;
 
 	if (!stack_a || !(*stack_a))
-		return ;
+		return (0);
 	node1 = *stack_a;
 	while (node1->next != NULL)
 	{
