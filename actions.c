@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 12:17:26 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/03/22 20:38:08 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:22:44 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,3 +74,4 @@ void	push(t_list **stack_a, t_list **stack_b)
 	top_stack->next = *stack_a;
 	*stack_a = top_stack;
 }
+
