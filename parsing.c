@@ -6,7 +6,7 @@
 /*   By: ymakhlou <ymakhlou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:10:01 by ymakhlou          #+#    #+#             */
-/*   Updated: 2024/04/14 19:10:47 by ymakhlou         ###   ########.fr       */
+/*   Updated: 2024/05/14 22:08:54 by ymakhlou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,3 +98,4 @@ int	stack_size(t_list **stack_a)
 	}
 	return (size);
 }
+
